@@ -376,7 +376,11 @@ comp_expr(['mupd',Map|As], Env, L, St) ->
     comp_upd_map(Map, As, Env, L, St);
 comp_expr(['map-get',Map,K], Env, L, St) ->
     comp_expr(['mref',Map,K], Env, L, St);
+comp_expr(['<-',Map,K], Env, L, St) ->
+    comp_expr(['mref',Map,K], Env, L, St);
 comp_expr(['map-set',Map|As], Env, L, St) ->
+    comp_expr(['mset',Map|As], Env, L, St);
+comp_expr(['->',Map|As], Env, L, St) ->
     comp_expr(['mset',Map|As], Env, L, St);
 comp_expr(['map-update',Map|As], Env, L, St) ->
     comp_expr(['mupd',Map|As], Env, L, St);

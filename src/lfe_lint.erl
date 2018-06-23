@@ -560,7 +560,11 @@ check_expr(['mupd',Map|As], Env, L, St) ->
     expr_update_map(Map, As, Env, L, St);
 check_expr(['map-get',Map,K], Env, L, St) ->
     check_expr(['mref',Map,K], Env, L, St);
+check_expr(['<-',Map,K], Env, L, St) ->
+    check_expr(['mref',Map,K], Env, L, St);
 check_expr(['map-set',Map|As], Env, L, St) ->
+    check_expr(['mset',Map|As], Env, L, St);
+check_expr(['->',Map|As], Env, L, St) ->
     check_expr(['mset',Map|As], Env, L, St);
 check_expr(['map-update',Map|As], Env, L, St) ->
     check_expr(['mupd',Map|As], Env, L, St);

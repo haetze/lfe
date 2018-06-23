@@ -177,7 +177,11 @@ eval_expr(['mupd',M|As], Env) ->
     foldl(fun maps_update/2, Map, Pairs);
 eval_expr(['map-get',Map,K], Env) ->
     eval_expr([mref,Map,K], Env);
+eval_expr(['<-',Map,K], Env) ->
+    eval_expr([mref,Map,K], Env);
 eval_expr(['map-set',M|As], Env) ->
+    eval_expr([mset,M|As], Env);
+eval_expr(['->',M|As], Env) ->
     eval_expr([mset,M|As], Env);
 eval_expr(['map-update',M|As], Env) ->
     eval_expr([mupd,M|As], Env);
